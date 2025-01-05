@@ -1,0 +1,106 @@
+<Defs>
+    <ThingDef ParentName="MakeableDrugBase">
+        <defName>Eyuakitta</defName>
+        <label>Eyuakitta</label>
+        <description>A consciousness expanding hallucinogenic.</description>
+        <graphicData>
+            <texPath>Things/Item/Drug/Eyuakitta</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <!--How much work does it take to make this item-->
+            <WorkToMake>500</WorkToMake>
+            <!--How much is this item worth to traders?-->
+            <MarketValue>15</MarketValue>
+            <!--How much does the item weigh, in KG I think?-->
+            <Mass>0.01</Mass>
+        </statBases>
+        <costList>
+            <Ambrosia>2</Ambrosia>
+            <PsychoidLeaves>2</PsychoidLeaves>
+            <SmokeleafLeaves>2</SmokeleafLeaves>
+        </costList>
+        <ingestible>
+            <foodType>Processed</foodType>
+            <joyKind>Chemical</joyKind>
+            <joy>0.30</joy>
+            <drugCategory>Hard</drugCategory>
+            <baseIngestTicks>200</baseIngestTicks>
+            <chairSearchRadius>10</chairSearchRadius>
+            <nurseable>true</nurseable>
+            <outcomeDoers>
+                <li Class="IngestionOutcomeDoer_GiveHediff">
+                    <hediffDef>EyuakittaHigh</hediffDef>
+                    <severity>0.50</severity>
+                    <toleranceChemical>Ambrosia</toleranceChemical>
+                </li>
+                <li Class="IngestionOutcomeDoer_GiveHediff">
+                    <hediffDef>AmbrosiaTolerance</hediffDef>
+                    <severity>0.032</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <chemical>Ambrosia</chemical>
+                <addictiveness>0.030</addictiveness>
+                <minToleranceToAddict>0.15</minToleranceToAddict>
+                <listOrder>40</listOrder>
+            </li>
+        </comps>
+        <recipeMaker>
+            <recipeUsers>
+                <li>DrugLab</li>
+                <li>StoneOven</li>
+                <li>Campfire</li>
+            </recipeUsers>
+            <soundWorking>Recipe_Drug</soundWorking>
+        </recipeMaker>
+    </ThingDef>
+
+    <HediffDef>
+        <!--This is used by other defs when referring to this def-->
+        <defName>EyuakittaHigh</defName>
+        <!--Strings that the game uses when describing our drug effect-->
+        <label>Traversing the spirit world</label>
+        <labelNoun>Eyuakitta trip</labelNoun>
+        <description>Hallucinogen that connects the user to the spirit world.</description>
+        <hediffClass>Hediff_High</hediffClass>
+        <defaultLabelColor>(1,0.2,0.6)</defaultLabelColor>
+        <maxSeverity>1.0</maxSeverity>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-3.0</severityPerDay>
+                <showHoursToRecover>true</showHoursToRecover>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <painFactor>0.8</painFactor>
+                <restFallFactor>0.33</restFallFactor>
+                <statOffsets>
+                    <ImmunityGainSpeed>0.1</ImmunityGainSpeed>
+                </statOffsets>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>0.7</offset>
+                    </li>
+                    <li>
+                        <capacity>Talking</capacity>
+                        <offset>-0.7</offset>
+                    </li>
+                    <li>
+                        <capacity>Hearing</capacity>
+                        <offset>-0.7</offset>
+                    </li>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>-0.7</offset>
+                    </li>
+                </capMods>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>
